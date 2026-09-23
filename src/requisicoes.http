@@ -1,0 +1,40 @@
+### 1. Criar um Jogador
+POST http://localhost:8080/jogadores
+Content-Type: application/json
+
+{
+  "nome": "Nelsi"
+}
+
+### 2. Listar Jogadores (Para ver se guardou e pegar o ID)
+GET http://localhost:8080/jogadores
+
+### 3. Criar um Feiticeiro associado ao Jogador 1
+POST http://localhost:8080/feiticeiros
+Content-Type: application/json
+
+{
+  "nome": "Satoru Gojo",
+  "grau": "Grau Especial",
+  "tecnicaAmaldicoada": "Ilimitado",
+  "nivel": 10,
+  "kokusen": 5,
+  "jogador": {
+    "id": 1
+  }
+}
+
+### Subir de Nível (Ganha 2 pontos)
+PATCH http://localhost:8080/feiticeiros/1/levelup
+
+### Distribuir os Pontos Ganhos
+PATCH http://localhost:8080/feiticeiros/1/distribuir-pontos
+Content-Type: application/json
+
+{
+  "liberacao": 1,
+  "fisico": 1
+}
+
+### 4. Listar Feiticeiros (Para ver o Gojo com o jogador embutido)
+GET http://localhost:8080/feiticeiros
